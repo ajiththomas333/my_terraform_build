@@ -6,7 +6,12 @@ agent any
 stages {
 
 
-
+stage('Check Tools') {
+    steps {
+        bat 'terraform version'
+        bat 'git --version'
+    }
+}
 
 
 stage('Terraform Init') {
