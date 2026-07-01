@@ -10,7 +10,7 @@ stage('Git Clone') {
 
 steps {
 
-git 'https://github.com/yourname/project.git'
+git 'https://github.com/my_terraform_build/main.tf'
 
 }
 
