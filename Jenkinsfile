@@ -1,51 +1,44 @@
 pipeline {
 
-agent any
+    agent any
 
+    environment {
 
-stages {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
 
-
-stage('Check Tools') {
-    steps {
-        bat 'terraform version'
-        bat 'git --version'
     }
-}
+
+    stages {
+
+        stage('Check Tools') {
+            steps {
+                bat 'terraform version'
+                bat 'git --version'
+            }
+        }
 
 
-stage('Terraform Init') {
-
-steps {
-
-bat 'terraform init'
-
-}
-
-}
+        stage('Terraform Init') {
+            steps {
+                bat 'terraform init'
+            }
+        }
 
 
-stage('Terraform Plan') {
-
-steps {
-
-bat 'terraform plan'
-
-}
-
-}
+        stage('Terraform Plan') {
+            steps {
+                bat 'terraform plan'
+            }
+        }
 
 
-stage('Terraform Apply') {
+        stage('Terraform Apply') {
+            steps {
+                bat 'terraform apply -auto-approve'
+            }
+        }
 
-steps {
-
-bat 'terraform apply -auto-approve'
-
-}
-
-}
-
-}
+    }
 
 }
